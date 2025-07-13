@@ -1,0 +1,34 @@
+.input-node {
+  background-color: #e0f7fa;
+  color: #000;
+  font-weight: bold;
+}
+
+.processing-node {
+  background-color: #fce4ec;
+  color: #000;
+}
+
+.processing-node-active {
+  background-color: #ffe082;
+  color: #000;
+  font-weight: bold;
+}
+
+.success-node {
+  background-color: #c8e6c9;
+  color: #000;
+  font-weight: bold;
+}
+
+.output-node {
+  background-color: #d1c4e9;
+  color: #000;
+  font-weight: bold;
+}
+
+.output-node-active {
+  background-color: #b39ddb;
+  color: #000;
+  font-weight: bold;
+}
