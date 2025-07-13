@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useDropzone } from "react-dropzone";
 import PipelineFlow from "./PipelineFlow";
 import { motion } from "framer-motion";
 
@@ -12,16 +13,20 @@ function FileUpload() {
   const [loading, setLoading] = useState(false);
   const [pipelineTrigger, setPipelineTrigger] = useState(false);
 
-  const handleChange = (e) => {
-    setFile(e.target.files[0]);
-    setOutput(null);
-    setError("");
-    setPipelineTrigger(false);
-  };
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: { "application/pdf": [".pdf"], "image/*": [] },
+    maxFiles: 1,
+    onDrop: (acceptedFiles) => {
+      setFile(acceptedFiles[0]);
+      setOutput(null);
+      setError("");
+      setPipelineTrigger(false);
+    },
+  });
 
   const handleUpload = async () => {
     if (!file) {
-      setError("Please select a file.");
+      setError("Please select or drop a file.");
       return;
     }
 
@@ -59,12 +64,28 @@ function FileUpload() {
         Upload Your Document
       </motion.h2>
 
-      <input
-        type="file"
-        accept=".pdf,.jpg,.jpeg,.png,.bmp,.tiff"
-        onChange={handleChange}
-      />
+      {/* Drag & Drop Zone */}
+      <motion.div
+        {...getRootProps()}
+        style={{
+          border: "2px dashed #aaa",
+          borderRadius: "8px",
+          padding: "2rem",
+          textAlign: "center",
+          background: "#fafafa",
+          cursor: "pointer",
+        }}
+        whileHover={{ scale: 1.02 }}
+      >
+        <input {...getInputProps()} />
+        {file ? (
+          <p><strong>Selected:</strong> {file.name}</p>
+        ) : (
+          <p>📄 Drag & drop a PDF or image here, or click to browse</p>
+        )}
+      </motion.div>
 
+      {/* Upload Button */}
       <motion.button
         onClick={handleUpload}
         disabled={loading}
@@ -84,6 +105,7 @@ function FileUpload() {
         {loading ? "Uploading..." : "Upload"}
       </motion.button>
 
+      {/* Error message */}
       {error && (
         <motion.p
           style={{ color: "red", marginTop: "1rem" }}
@@ -94,7 +116,7 @@ function FileUpload() {
         </motion.p>
       )}
 
-      {/* ✅ Animated Pipeline Flow */}
+      {/* Pipeline Flow */}
       {pipelineTrigger && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -105,7 +127,7 @@ function FileUpload() {
         </motion.div>
       )}
 
-      {/* ✅ JSON output */}
+      {/* Extracted Output */}
       {output && (
         <motion.div
           style={{ marginTop: "2rem" }}
