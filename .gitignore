@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Node.js (React)
+node_modules/
+dist/
+.vite/
+.env.local
+
+# Python (FastAPI)
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+
+
