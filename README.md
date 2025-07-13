@@ -75,3 +75,24 @@ Commit your changes (git commit -m 'Add some amazing feature')
 push to the branch (git push origin feature/amazing-feature)
 Open a Pull Request
 
+## 📄 License
+This project is licensed under the [MIT License](LICENSE).
+
+## 🧰 Support
+If you encounter issues or have questions, please [open an issue](https://github.com/VaranasiSathwika/olmocr-project/issues).
+
+🙏 Acknowledgments
+Tesseract OCR
+PyMuPDF
+FastAPI
+React & Tailwind CSS
+Open source contributors and community
+
+📝 Changelog
+v1.0.0 (Current)
+Initial release of OlmOCR
+Backend: FastAPI OCR pipeline with entity and table extraction
+Frontend: Drag-and-drop UI with real-time JSON results
+Smooth file upload animations and React Flow visualization
+
+
